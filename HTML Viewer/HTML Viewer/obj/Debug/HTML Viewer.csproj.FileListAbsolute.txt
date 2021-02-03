@@ -1,0 +1,10 @@
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\bin\Debug\HTML Viewer.exe.config
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\bin\Debug\HTML Viewer.exe
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\bin\Debug\HTML Viewer.pdb
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML Viewer.csprojAssemblyReference.cache
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML_Viewer.Form1.resources
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML_Viewer.Properties.Resources.resources
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML Viewer.csproj.GenerateResource.cache
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML Viewer.csproj.CoreCompileInputs.cache
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML Viewer.exe
+C:\Users\Ondra\Desktop\Programming\seminar\HTML Viewer\HTML Viewer\HTML Viewer\obj\Debug\HTML Viewer.pdb
