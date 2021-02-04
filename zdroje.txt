@@ -3,3 +3,4 @@ https://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html
 http://xahlee.info/js/html5_non-closing_tag.html
 https://remixicon.com/
 https://stackoverflow.com/questions/7166307/passing-a-condition-as-a-parameter
+https://stackoverflow.com/questions/5427020/prompt-dialog-in-windows-forms

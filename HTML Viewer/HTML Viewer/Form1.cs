@@ -16,50 +16,75 @@ namespace HTML_Viewer
     public partial class Form1 : Form
     {
         Node root;
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            openFileDialog.InitialDirectory = "C:\\";
+            openFileDialog.Filter = "html files (*.html)|*.html";
+            openFileDialog.RestoreDirectory = true;
+
+        }
+
         private void AddToTreeView(Node node, TreeNode parent = null)
         {
+            TreeNode newNode;
             if(node is Element)
             {
                 Element e = (Element)node;
-                TreeNode newParent;
                 if (parent != null)
                 {
-                    parent.Nodes.Add($"Element: \"{e.TagName}\"");
-                    newParent = parent.Nodes[parent.Nodes.Count - 1];
+                    parent.Nodes.Add($"<{e.TagName}>");
+                    newNode = parent.Nodes[parent.Nodes.Count - 1];
+                    newNode.ImageIndex = 0;
+                    newNode.SelectedImageIndex = 0;
                 }
                 else
                 {
-                    TreeViewer.Nodes.Add($"Element: \"{e.TagName}\"");
-                    newParent = TreeViewer.Nodes[0];
+                    TreeViewer.Nodes.Add($"<{e.TagName}>");
+                    newNode = TreeViewer.Nodes[0];
+                    newNode.ImageIndex = 0;
+                    newNode.SelectedImageIndex = 0;
                 }
+                newNode.Tag = e;
                 foreach (Attribute attribute in e.Attributes)
                 {
-                    newParent.Nodes.Add($"Attribute: \"{attribute.Name}\"");
-                    newParent.Nodes[0].Nodes.Add($"Value: \"{attribute.Value}\"");
+                    newNode.Nodes.Add($"{attribute.Name}=");
+                    newNode.Nodes[newNode.Nodes.Count - 1].Tag = attribute;
+                    newNode.Nodes[newNode.Nodes.Count - 1].Nodes.Add($"\"{attribute.Value}\"");
+                    newNode.Nodes[newNode.Nodes.Count - 1].Nodes[0].Tag = attribute;
+                    newNode.Nodes[newNode.Nodes.Count - 1].ImageIndex = 1;
+                    newNode.Nodes[newNode.Nodes.Count - 1].SelectedImageIndex = 1;
+                    newNode.Nodes[newNode.Nodes.Count - 1].Nodes[0].ImageIndex = 2;
+                    newNode.Nodes[newNode.Nodes.Count - 1].Nodes[0].SelectedImageIndex = 2;
                 }
                 foreach (Node child in e.Children)
                 {
-                    AddToTreeView(child, newParent);
+                    AddToTreeView(child, newNode);
                 }
             }
             else //node je Text
             {
                 Text t = (Text)node;
-                parent.Nodes.Add($"Text: \"{t.Value}\"");
+                parent.Nodes.Add(t.Value);
+                newNode = parent.Nodes[parent.Nodes.Count - 1];
+                newNode.Tag = t;
+                newNode.ImageIndex = 3;
+                newNode.SelectedImageIndex = 3;
             }
         }
-        public Form1()
+
+        private void UpdateTree()
         {
-            InitializeComponent();
+            TreeViewer.Nodes.Clear();
+            AddToTreeView(root);
+            TreeViewer.ExpandAll();
         }
 
         private void openFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.InitialDirectory = "C:\\";
-            openFileDialog.Filter = "html files (*.html)|*.html";
-            openFileDialog.RestoreDirectory = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -68,11 +93,81 @@ namespace HTML_Viewer
                 Parser parser = new Parser(input);
                 root = parser.Parse();
 
-                AddToTreeView(root);
-                TreeViewer.ExpandAll();
+                UpdateTree();
             }
         }
+
+
+        private void edit_Click(object sender, EventArgs e)
+        {
+            var n = TreeViewer.SelectedNode.Tag;
+            if (n is Element)
+            {
+                Element element = (Element)n;
+                element.TagName = editBox.Text;
+                TreeViewer.SelectedNode.Text = $"<{editBox.Text}>";
+            }
+            else if (n is Text)
+            {
+                Text text = (Text)n;
+                text.Value = editBox.Text;
+                TreeViewer.SelectedNode.Text = editBox.Text;
+            }
+            else
+            {
+                Attribute a = (Attribute)n;
+                if (TreeViewer.SelectedNode.Text[0] == '"')
+                {
+                    a.Value = editBox.Text;
+                    TreeViewer.SelectedNode.Text = $"\"{editBox.Text}\"";
+                }
+                else
+                {
+                    a.Name = editBox.Text;
+                    TreeViewer.SelectedNode.Text = $"{editBox.Text}=";
+                }
+            }
+        }
+
+
+        private void updateTextBox(object sender, TreeViewEventArgs e)
+        {
+            var n = TreeViewer.SelectedNode.Tag;
+            if (n is Element)
+            {
+                Element element = (Element)n;
+                editBox.Text = element.TagName;
+            }
+            else if (n is Text)
+            {
+                Text text = (Text)n;
+                editBox.Text = text.Value;
+            }
+            else
+            {
+                Attribute a = (Attribute)n;
+                if (TreeViewer.SelectedNode.Text[0] == 'A')
+                {
+                    editBox.Text = a.Name;
+                }
+                else
+                {
+                    editBox.Text = a.Value;
+                }
+            }
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Někdy brzo");
+        }
+
+        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
+
 
     public class Attribute
     {
