@@ -309,11 +309,12 @@ namespace HTML_Viewer
         private int pos = 0; //Ukazatel soucasne pozice vstupu.
         public string input; //Text HTML vstupu.
         List<string> selfClosingTags = new List<string>() { "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr" };
+        bool includeSpace = true;
 
         private bool Eof()
         {
             return (pos >= input.Length);
-        }
+        } //Vrati true pokud je ukazatel pos na konci vstupu.
 
         private char ReadChar(bool advance) //Precte nasledujici znak inputu s moznosti posunout ukazatel pozice.
         {
@@ -328,7 +329,7 @@ namespace HTML_Viewer
         private string ReadWhile(Func<Boolean> condition) //Cte znaky dokud plati condition, vysledek vrati ve stringu.
         {
             string s = "";
-            while(pos < input.Length && condition())
+            while(!Eof() && condition())
             {
                 s += ReadChar(true);
             }
@@ -356,7 +357,7 @@ namespace HTML_Viewer
             return value;
         } //Precte hodnotu ohranicenou uvozovkami.
 
-        private Attribute ParseAttribute()
+        private Attribute ParseAttribute() //Precte atribut v formatu Name="Value".
         {
             string name = ReadName();
             ReadChar(true); // =
@@ -413,6 +414,11 @@ namespace HTML_Viewer
         private Text ParseText() //Precte a vrati text do zacatku nasledujiciho elementu.
         {
             Text t = new Text( ReadWhile(() => ReadChar(false) != '<') );
+            if (includeSpace)
+            {
+                t.Value = t.Value.Insert(0, " ");
+                includeSpace = false;
+            }
             return t;
         }
 
@@ -421,6 +427,7 @@ namespace HTML_Viewer
             List<Node> nodes = new List<Node>();
             while(true)
             {
+                includeSpace = (ReadChar(false) == ' ');
                 ConsumeWhitespace();
                 if (Eof() || input.Substring(pos, 2) == "</")
                 {
