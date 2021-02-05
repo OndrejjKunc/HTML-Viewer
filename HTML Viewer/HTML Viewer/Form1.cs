@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HTML_Viewer
@@ -309,7 +301,7 @@ namespace HTML_Viewer
         private int pos = 0; //Ukazatel soucasne pozice vstupu.
         public string input; //Text HTML vstupu.
         List<string> selfClosingTags = new List<string>() { "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr" };
-        bool includeSpace = true;
+        bool includeSpace = false;
 
         private bool Eof()
         {
@@ -427,13 +419,17 @@ namespace HTML_Viewer
             List<Node> nodes = new List<Node>();
             while(true)
             {
-                includeSpace = (ReadChar(false) == ' ');
+                if (!Eof())
+                {
+                    includeSpace = (ReadChar(false) == ' ');
+                }
                 ConsumeWhitespace();
                 if (Eof() || input.Substring(pos, 2) == "</")
                 {
                     break;
                 }
                 nodes.Add(ParseNode());
+                includeSpace = false;
             }
             return nodes;
         }
@@ -454,6 +450,8 @@ namespace HTML_Viewer
 
         public Node Parse() //Precte input a vrati root node, popr. prida root node pokud uz neexisture.
         {
+            pos = 0;
+
             if (input.StartsWith("<!DOCTYPE html>", true, null))
             {
                 input = input.Remove(0, 15);
@@ -490,6 +488,5 @@ namespace HTML_Viewer
         {
             input = _input;
         }
-
     }
 }
