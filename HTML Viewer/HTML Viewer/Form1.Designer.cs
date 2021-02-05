@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.openFile = new System.Windows.Forms.Button();
+            this.open = new System.Windows.Forms.Button();
             this.save = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.download = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.urlBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.edit = new System.Windows.Forms.Button();
             this.editBox = new System.Windows.Forms.TextBox();
@@ -48,6 +48,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -61,7 +62,7 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.openFile);
+            this.flowLayoutPanel2.Controls.Add(this.open);
             this.flowLayoutPanel2.Controls.Add(this.save);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -69,16 +70,17 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(100, 50);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
-            // openFile
+            // open
             // 
-            this.openFile.Image = global::HTML_Viewer.Properties.Resources.folderOpen;
-            this.openFile.Location = new System.Drawing.Point(7, 7);
-            this.openFile.Margin = new System.Windows.Forms.Padding(7);
-            this.openFile.Name = "openFile";
-            this.openFile.Size = new System.Drawing.Size(36, 36);
-            this.openFile.TabIndex = 2;
-            this.openFile.UseVisualStyleBackColor = true;
-            this.openFile.Click += new System.EventHandler(this.openFile_Click);
+            this.open.Image = global::HTML_Viewer.Properties.Resources.folderOpen;
+            this.open.Location = new System.Drawing.Point(7, 7);
+            this.open.Margin = new System.Windows.Forms.Padding(7);
+            this.open.Name = "open";
+            this.open.Size = new System.Drawing.Size(36, 36);
+            this.open.TabIndex = 2;
+            this.toolTip.SetToolTip(this.open, "Otevřít Soubor");
+            this.open.UseVisualStyleBackColor = true;
+            this.open.Click += new System.EventHandler(this.openFile);
             // 
             // save
             // 
@@ -88,22 +90,22 @@
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(36, 36);
             this.save.TabIndex = 3;
+            this.toolTip.SetToolTip(this.save, "Uložit Soubor");
             this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
+            this.save.Click += new System.EventHandler(this.saveFile);
             // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel3.AutoSize = true;
             this.flowLayoutPanel3.Controls.Add(this.download);
-            this.flowLayoutPanel3.Controls.Add(this.textBox1);
+            this.flowLayoutPanel3.Controls.Add(this.urlBox);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(167, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(264, 50);
             this.flowLayoutPanel3.TabIndex = 1;
-            this.flowLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel3_Paint);
             // 
             // download
             // 
@@ -113,17 +115,19 @@
             this.download.Name = "download";
             this.download.Size = new System.Drawing.Size(36, 36);
             this.download.TabIndex = 0;
+            this.toolTip.SetToolTip(this.download, "Stáhnout Zdroj Stránky");
             this.download.UseVisualStyleBackColor = true;
+            this.download.Click += new System.EventHandler(this.downloadFile);
             // 
-            // textBox1
+            // urlBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(7, 7);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(7);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 36);
-            this.textBox1.TabIndex = 1;
+            this.urlBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.urlBox.Location = new System.Drawing.Point(7, 7);
+            this.urlBox.Margin = new System.Windows.Forms.Padding(7);
+            this.urlBox.Multiline = true;
+            this.urlBox.Name = "urlBox";
+            this.urlBox.Size = new System.Drawing.Size(200, 36);
+            this.urlBox.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -149,8 +153,9 @@
             this.edit.Name = "edit";
             this.edit.Size = new System.Drawing.Size(36, 36);
             this.edit.TabIndex = 3;
+            this.toolTip.SetToolTip(this.edit, "Upravit Hodnotu");
             this.edit.UseVisualStyleBackColor = true;
-            this.edit.Click += new System.EventHandler(this.edit_Click);
+            this.edit.Click += new System.EventHandler(this.editValue);
             // 
             // editBox
             // 
@@ -307,11 +312,11 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button openFile;
+        private System.Windows.Forms.Button open;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button download;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox urlBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button edit;
         private System.Windows.Forms.TextBox editBox;
@@ -324,6 +329,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.ImageList treeIcons;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

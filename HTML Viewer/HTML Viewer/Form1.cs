@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace HTML_Viewer
     {
         Node root;
         OpenFileDialog openFileDialog = new OpenFileDialog();
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        Parser parser = new Parser();
+        Serializer serializer = new Serializer();
 
         public Form1()
         {
@@ -24,8 +28,9 @@ namespace HTML_Viewer
 
             openFileDialog.InitialDirectory = "C:\\";
             openFileDialog.Filter = "html files (*.html)|*.html";
-            openFileDialog.RestoreDirectory = true;
 
+            saveFileDialog.InitialDirectory = "C:\\";
+            saveFileDialog.Filter = "html file (*.html)|*.html";
         }
 
         private void AddToTreeView(Node node, TreeNode parent = null)
@@ -83,22 +88,21 @@ namespace HTML_Viewer
             TreeViewer.ExpandAll();
         }
 
-        private void openFile_Click(object sender, EventArgs e)
+        private void openFile(object sender, EventArgs e)
         {
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string inputPath = openFileDialog.FileName;
-                string input = File.ReadAllText(inputPath);
-                Parser parser = new Parser(input);
-                root = parser.Parse();
+                string inputText = File.ReadAllText(inputPath);
+                
+                root = parser.Parse(inputText);
 
                 UpdateTree();
             }
         }
 
-
-        private void edit_Click(object sender, EventArgs e)
+        private void editValue(object sender, EventArgs e)
         {
             var n = TreeViewer.SelectedNode.Tag;
             if (n is Element)
@@ -129,7 +133,6 @@ namespace HTML_Viewer
             }
         }
 
-
         private void updateTextBox(object sender, TreeViewEventArgs e)
         {
             var n = TreeViewer.SelectedNode.Tag;
@@ -146,28 +149,34 @@ namespace HTML_Viewer
             else
             {
                 Attribute a = (Attribute)n;
-                if (TreeViewer.SelectedNode.Text[0] == 'A')
+                if (TreeViewer.SelectedNode.Text[0] == '"')
                 {
-                    editBox.Text = a.Name;
+                    editBox.Text = a.Value;
                 }
                 else
                 {
-                    editBox.Text = a.Value;
+                    editBox.Text = a.Name;
                 }
             }
         }
 
-        private void save_Click(object sender, EventArgs e)
+        private void saveFile(object sender, EventArgs e)
         {
-            MessageBox.Show("Někdy brzo");
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog.FileName, serializer.Serialize(root));
+            }
         }
 
-        private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        private void downloadFile(object sender, EventArgs e)
         {
-
+            using (WebClient webClient = new WebClient())
+            {
+                root = parser.Parse(webClient.DownloadString(urlBox.Text));
+                UpdateTree();
+            }
         }
     }
-
 
     public class Attribute
     {
@@ -209,10 +218,96 @@ namespace HTML_Viewer
 
     }
 
+    public class Serializer
+    {
+        private Node root;
+        private string output;
+        private int indent = 0;
+        List<string> selfClosingTags = new List<string>() { "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr" };
+
+        private bool isSelfClosing(string name)
+        {
+            return selfClosingTags.Contains(name);
+        }
+
+        private void AddToOutput(Node node) //htmlText
+        {
+            if (node is Element)
+            {
+                output += Environment.NewLine;
+                output += new String('\t', indent);
+                Element e = (Element)node;
+
+                //Otvirajici tag + attributy
+                output += $"<{e.TagName}";
+                foreach(Attribute attribute in e.Attributes)
+                {
+                    output += $" {attribute.Name}=\"{attribute.Value}\"";
+                }
+                output += ">";
+
+
+                if (!isSelfClosing(e.TagName))
+                {
+                    //Vyjimka: pokud ma element pouze jedno dite a to Test (<b>Priklad</b>), pro citelnost vystupu napiseme cely element na jeden radek
+                    if (e.Children.Count == 1 && e.Children[0] is Text)
+                    {
+                        Text t = (Text)e.Children[0];
+                        output += t.Value;
+                        output += $"</{e.TagName}>";
+                    }
+                    else
+                    {
+                        //Deti
+                        indent++;
+                        foreach (Node child in e.Children)
+                        {
+                            AddToOutput(child);
+                        }
+                        indent--;
+
+                        //Uzavirajici tag
+                        output += Environment.NewLine;
+                        output += new String('\t', indent);
+                        output += $"</{e.TagName}>";
+                    }
+                }
+            }
+            else if (node is Text)
+            {
+                Text t = (Text)node;
+                output += t.Value;
+            }
+        }
+
+        public string Serialize()
+        {
+            output = "<!DOCTYPE html>";
+            AddToOutput(root);
+            return output;
+        }
+
+        public string Serialize(Node node)
+        {
+            root = node;
+            return Serialize();
+        }
+
+        public Serializer()
+        {
+            root = null;
+        }
+
+        public Serializer(Node node)
+        {
+            root = node;
+        }
+    }
+
     public class Parser
     {
-        int pos = 0; //Ukazatel soucasne pozice vstupu.
-        string input; //Text HTML vstupu.
+        private int pos = 0; //Ukazatel soucasne pozice vstupu.
+        public string input; //Text HTML vstupu.
         List<string> selfClosingTags = new List<string>() { "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr" };
 
         private bool Eof()
@@ -233,7 +328,7 @@ namespace HTML_Viewer
         private string ReadWhile(Func<Boolean> condition) //Cte znaky dokud plati condition, vysledek vrati ve stringu.
         {
             string s = "";
-            while(condition())
+            while(pos < input.Length && condition())
             {
                 s += ReadChar(true);
             }
@@ -352,7 +447,7 @@ namespace HTML_Viewer
 
         public Node Parse() //Precte input a vrati root node, popr. prida root node pokud uz neexisture.
         {
-            if (input.StartsWith("<!DOCTYPE html>"))
+            if (input.StartsWith("<!DOCTYPE html>", true, null))
             {
                 input = input.Remove(0, 15);
                 ConsumeWhitespace();
@@ -371,6 +466,17 @@ namespace HTML_Viewer
             }
 
             return node;
+        }
+
+        public Node Parse(string _input)
+        {
+            input = _input;
+            return Parse();
+        }
+
+        public Parser()
+        {
+            input = "";
         }
 
         public Parser(string _input)
