@@ -31,164 +31,178 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.open = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
+            this.openButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.download = new System.Windows.Forms.Button();
             this.urlBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.edit = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             this.editBox = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.TreeViewer = new System.Windows.Forms.TreeView();
             this.treeIcons = new System.Windows.Forms.ImageList(this.components);
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.upButton = new System.Windows.Forms.Button();
+            this.downButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.addElementButton = new System.Windows.Forms.Button();
+            this.addAttributeButton = new System.Windows.Forms.Button();
+            this.addTextButton = new System.Windows.Forms.Button();
+            this.addCommentButton = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.open);
-            this.flowLayoutPanel2.Controls.Add(this.save);
+            this.flowLayoutPanel2.Controls.Add(this.newButton);
+            this.flowLayoutPanel2.Controls.Add(this.openButton);
+            this.flowLayoutPanel2.Controls.Add(this.saveButton);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(100, 50);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(150, 50);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
-            // open
+            // newButton
             // 
-            this.open.Image = global::HTML_Viewer.Properties.Resources.folderOpen;
-            this.open.Location = new System.Drawing.Point(7, 7);
-            this.open.Margin = new System.Windows.Forms.Padding(7);
-            this.open.Name = "open";
-            this.open.Size = new System.Drawing.Size(36, 36);
-            this.open.TabIndex = 2;
-            this.toolTip.SetToolTip(this.open, "Otevřít Soubor");
-            this.open.UseVisualStyleBackColor = true;
-            this.open.Click += new System.EventHandler(this.openFile);
+            this.newButton.Image = global::HTML_Viewer.Properties.Resources._new;
+            this.newButton.Location = new System.Drawing.Point(7, 7);
+            this.newButton.Margin = new System.Windows.Forms.Padding(7);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(36, 36);
+            this.newButton.TabIndex = 1;
+            this.newButton.TabStop = false;
+            this.toolTip.SetToolTip(this.newButton, "Nový Soubor");
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.NewFile);
             // 
-            // save
+            // openButton
             // 
-            this.save.Image = global::HTML_Viewer.Properties.Resources.save;
-            this.save.Location = new System.Drawing.Point(57, 7);
-            this.save.Margin = new System.Windows.Forms.Padding(7);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(36, 36);
-            this.save.TabIndex = 3;
-            this.toolTip.SetToolTip(this.save, "Uložit Soubor");
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.saveFile);
+            this.openButton.Image = global::HTML_Viewer.Properties.Resources.folderOpen;
+            this.openButton.Location = new System.Drawing.Point(57, 7);
+            this.openButton.Margin = new System.Windows.Forms.Padding(7);
+            this.openButton.Name = "openButton";
+            this.openButton.Size = new System.Drawing.Size(36, 36);
+            this.openButton.TabIndex = 2;
+            this.openButton.TabStop = false;
+            this.toolTip.SetToolTip(this.openButton, "Otevřít Soubor");
+            this.openButton.UseVisualStyleBackColor = true;
+            this.openButton.Click += new System.EventHandler(this.OpenFile);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Image = global::HTML_Viewer.Properties.Resources.save;
+            this.saveButton.Location = new System.Drawing.Point(107, 7);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(7);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(36, 36);
+            this.saveButton.TabIndex = 3;
+            this.saveButton.TabStop = false;
+            this.toolTip.SetToolTip(this.saveButton, "Uložit Soubor");
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveFile);
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel3.AutoSize = true;
             this.flowLayoutPanel3.Controls.Add(this.download);
             this.flowLayoutPanel3.Controls.Add(this.urlBox);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(167, 0);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(150, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(264, 50);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(634, 50);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
             // download
             // 
             this.download.Image = global::HTML_Viewer.Properties.Resources.download;
-            this.download.Location = new System.Drawing.Point(221, 7);
+            this.download.Location = new System.Drawing.Point(591, 7);
             this.download.Margin = new System.Windows.Forms.Padding(7);
             this.download.Name = "download";
             this.download.Size = new System.Drawing.Size(36, 36);
-            this.download.TabIndex = 0;
+            this.download.TabIndex = 12;
+            this.download.TabStop = false;
             this.toolTip.SetToolTip(this.download, "Stáhnout Zdroj Stránky");
             this.download.UseVisualStyleBackColor = true;
-            this.download.Click += new System.EventHandler(this.downloadFile);
+            this.download.Click += new System.EventHandler(this.DownloadFile);
             // 
             // urlBox
             // 
             this.urlBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.urlBox.Location = new System.Drawing.Point(7, 7);
+            this.urlBox.Location = new System.Drawing.Point(277, 7);
             this.urlBox.Margin = new System.Windows.Forms.Padding(7);
-            this.urlBox.Multiline = true;
             this.urlBox.Name = "urlBox";
-            this.urlBox.Size = new System.Drawing.Size(200, 36);
-            this.urlBox.TabIndex = 1;
+            this.urlBox.Size = new System.Drawing.Size(300, 20);
+            this.urlBox.TabIndex = 11;
+            this.urlBox.TabStop = false;
+            this.toolTip.SetToolTip(this.urlBox, "Adresa Stránky");
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.edit, 1, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel2.Controls.Add(this.editButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.editBox, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 461);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(50, 465);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(430, 50);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(208, 42);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
-            // edit
+            // editButton
             // 
-            this.edit.Image = global::HTML_Viewer.Properties.Resources.edit;
-            this.edit.Location = new System.Drawing.Point(387, 7);
-            this.edit.Margin = new System.Windows.Forms.Padding(7);
-            this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(36, 36);
-            this.edit.TabIndex = 3;
-            this.toolTip.SetToolTip(this.edit, "Upravit Hodnotu");
-            this.edit.UseVisualStyleBackColor = true;
-            this.edit.Click += new System.EventHandler(this.editValue);
+            this.editButton.Image = global::HTML_Viewer.Properties.Resources.edit;
+            this.editButton.Location = new System.Drawing.Point(169, 3);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(36, 36);
+            this.editButton.TabIndex = 33;
+            this.editButton.TabStop = false;
+            this.toolTip.SetToolTip(this.editButton, "Upravit Hodnotu");
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.EditValue);
             // 
             // editBox
             // 
             this.editBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.editBox.Location = new System.Drawing.Point(7, 7);
-            this.editBox.Margin = new System.Windows.Forms.Padding(7);
-            this.editBox.Multiline = true;
+            this.editBox.Location = new System.Drawing.Point(3, 3);
             this.editBox.Name = "editBox";
-            this.editBox.Size = new System.Drawing.Size(366, 36);
-            this.editBox.TabIndex = 4;
+            this.editBox.Size = new System.Drawing.Size(160, 20);
+            this.editBox.TabIndex = 32;
+            this.editBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditEnter);
             // 
-            // tabControl1
+            // tableLayoutPanel1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(3, 50);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(424, 408);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.TreeViewer);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(416, 382);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Prohlížeč stromu";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.TreeViewer, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 50);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 4, 4);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(780, 507);
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // TreeViewer
             // 
@@ -197,12 +211,12 @@
             this.TreeViewer.HotTracking = true;
             this.TreeViewer.ImageIndex = 0;
             this.TreeViewer.ImageList = this.treeIcons;
-            this.TreeViewer.Location = new System.Drawing.Point(3, 3);
+            this.TreeViewer.Location = new System.Drawing.Point(53, 3);
             this.TreeViewer.Name = "TreeViewer";
             this.TreeViewer.SelectedImageIndex = 0;
-            this.TreeViewer.Size = new System.Drawing.Size(410, 376);
-            this.TreeViewer.TabIndex = 0;
-            this.TreeViewer.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.updateTextBox);
+            this.TreeViewer.Size = new System.Drawing.Size(724, 459);
+            this.TreeViewer.TabIndex = 31;
+            this.TreeViewer.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.UpdateSelect);
             // 
             // treeIcons
             // 
@@ -212,82 +226,157 @@
             this.treeIcons.Images.SetKeyName(1, "attribute.png");
             this.treeIcons.Images.SetKeyName(2, "value.png");
             this.treeIcons.Images.SetKeyName(3, "text.png");
+            this.treeIcons.Images.SetKeyName(4, "comment.png");
             // 
-            // tabPage2
+            // flowLayoutPanel1
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(416, 382);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Prohlížeč pravidel";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel1.Controls.Add(this.upButton);
+            this.flowLayoutPanel1.Controls.Add(this.downButton);
+            this.flowLayoutPanel1.Controls.Add(this.deleteButton);
+            this.flowLayoutPanel1.Controls.Add(this.addElementButton);
+            this.flowLayoutPanel1.Controls.Add(this.addAttributeButton);
+            this.flowLayoutPanel1.Controls.Add(this.addTextButton);
+            this.flowLayoutPanel1.Controls.Add(this.addCommentButton);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(50, 507);
+            this.flowLayoutPanel1.TabIndex = 4;
             // 
-            // tableLayoutPanel1
+            // upButton
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(861, 511);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.upButton.Enabled = false;
+            this.upButton.Image = global::HTML_Viewer.Properties.Resources.up;
+            this.upButton.Location = new System.Drawing.Point(7, 3);
+            this.upButton.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.upButton.Name = "upButton";
+            this.upButton.Size = new System.Drawing.Size(36, 36);
+            this.upButton.TabIndex = 21;
+            this.upButton.TabStop = false;
+            this.toolTip.SetToolTip(this.upButton, "Posunout Nahoru");
+            this.upButton.UseVisualStyleBackColor = true;
+            this.upButton.Click += new System.EventHandler(this.MoveUp);
+            // 
+            // downButton
+            // 
+            this.downButton.Enabled = false;
+            this.downButton.Image = global::HTML_Viewer.Properties.Resources.down;
+            this.downButton.Location = new System.Drawing.Point(7, 45);
+            this.downButton.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.downButton.Name = "downButton";
+            this.downButton.Size = new System.Drawing.Size(36, 36);
+            this.downButton.TabIndex = 22;
+            this.downButton.TabStop = false;
+            this.toolTip.SetToolTip(this.downButton, "Posunout Dolu");
+            this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.MoveDown);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Enabled = false;
+            this.deleteButton.Image = global::HTML_Viewer.Properties.Resources.delete;
+            this.deleteButton.Location = new System.Drawing.Point(7, 87);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(7, 3, 7, 7);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(36, 36);
+            this.deleteButton.TabIndex = 23;
+            this.deleteButton.TabStop = false;
+            this.toolTip.SetToolTip(this.deleteButton, "Smazat");
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteNode);
+            // 
+            // addElementButton
+            // 
+            this.addElementButton.Image = global::HTML_Viewer.Properties.Resources.addElement;
+            this.addElementButton.Location = new System.Drawing.Point(7, 137);
+            this.addElementButton.Margin = new System.Windows.Forms.Padding(7, 7, 7, 3);
+            this.addElementButton.Name = "addElementButton";
+            this.addElementButton.Size = new System.Drawing.Size(36, 36);
+            this.addElementButton.TabIndex = 24;
+            this.addElementButton.TabStop = false;
+            this.toolTip.SetToolTip(this.addElementButton, "Přidat Element");
+            this.addElementButton.UseVisualStyleBackColor = true;
+            this.addElementButton.Click += new System.EventHandler(this.AddElement);
+            // 
+            // addAttributeButton
+            // 
+            this.addAttributeButton.Image = global::HTML_Viewer.Properties.Resources.addAttribute;
+            this.addAttributeButton.Location = new System.Drawing.Point(7, 179);
+            this.addAttributeButton.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.addAttributeButton.Name = "addAttributeButton";
+            this.addAttributeButton.Size = new System.Drawing.Size(36, 36);
+            this.addAttributeButton.TabIndex = 25;
+            this.addAttributeButton.TabStop = false;
+            this.toolTip.SetToolTip(this.addAttributeButton, "Přidat Atribut");
+            this.addAttributeButton.UseVisualStyleBackColor = true;
+            this.addAttributeButton.Click += new System.EventHandler(this.AddAttribute);
+            // 
+            // addTextButton
+            // 
+            this.addTextButton.Image = global::HTML_Viewer.Properties.Resources.addText;
+            this.addTextButton.Location = new System.Drawing.Point(7, 221);
+            this.addTextButton.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.addTextButton.Name = "addTextButton";
+            this.addTextButton.Size = new System.Drawing.Size(36, 36);
+            this.addTextButton.TabIndex = 26;
+            this.addTextButton.TabStop = false;
+            this.toolTip.SetToolTip(this.addTextButton, "Přidat Text");
+            this.addTextButton.UseVisualStyleBackColor = true;
+            this.addTextButton.Click += new System.EventHandler(this.AddText);
+            // 
+            // addCommentButton
+            // 
+            this.addCommentButton.Image = global::HTML_Viewer.Properties.Resources.addComment;
+            this.addCommentButton.Location = new System.Drawing.Point(7, 263);
+            this.addCommentButton.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.addCommentButton.Name = "addCommentButton";
+            this.addCommentButton.Size = new System.Drawing.Size(36, 36);
+            this.addCommentButton.TabIndex = 27;
+            this.addCommentButton.TabStop = false;
+            this.toolTip.SetToolTip(this.addCommentButton, "Přidat Komentář");
+            this.addCommentButton.UseVisualStyleBackColor = true;
+            this.addCommentButton.Click += new System.EventHandler(this.AddComment);
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel3, 2);
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel5, 1, 0);
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(861, 50);
-            this.tableLayoutPanel3.TabIndex = 6;
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(784, 561);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // flowLayoutPanel4
+            // tableLayoutPanel4
             // 
-            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel2);
-            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(430, 50);
-            this.flowLayoutPanel4.TabIndex = 0;
-            // 
-            // flowLayoutPanel5
-            // 
-            this.flowLayoutPanel5.Controls.Add(this.flowLayoutPanel3);
-            this.flowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(430, 0);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(431, 50);
-            this.flowLayoutPanel5.TabIndex = 1;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel2, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel3, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(784, 50);
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 511);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "Form1";
@@ -297,39 +386,40 @@
             this.flowLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button open;
-        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.Button openButton;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button download;
         private System.Windows.Forms.TextBox urlBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button edit;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.TextBox editBox;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TreeView TreeViewer;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
         private System.Windows.Forms.ImageList treeIcons;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button addElementButton;
+        private System.Windows.Forms.Button addAttributeButton;
+        private System.Windows.Forms.Button addTextButton;
+        private System.Windows.Forms.Button upButton;
+        private System.Windows.Forms.Button downButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.Button addCommentButton;
     }
 }
 
