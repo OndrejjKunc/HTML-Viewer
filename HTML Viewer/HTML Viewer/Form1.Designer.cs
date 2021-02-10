@@ -34,6 +34,7 @@
             this.newButton = new System.Windows.Forms.Button();
             this.openButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.viewButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.download = new System.Windows.Forms.Button();
             this.urlBox = new System.Windows.Forms.TextBox();
@@ -68,11 +69,12 @@
             this.flowLayoutPanel2.Controls.Add(this.newButton);
             this.flowLayoutPanel2.Controls.Add(this.openButton);
             this.flowLayoutPanel2.Controls.Add(this.saveButton);
+            this.flowLayoutPanel2.Controls.Add(this.viewButton);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(150, 50);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(200, 50);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // newButton
@@ -114,22 +116,35 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.SaveFile);
             // 
+            // viewButton
+            // 
+            this.viewButton.Image = global::HTML_Viewer.Properties.Resources.view;
+            this.viewButton.Location = new System.Drawing.Point(157, 7);
+            this.viewButton.Margin = new System.Windows.Forms.Padding(7);
+            this.viewButton.Name = "viewButton";
+            this.viewButton.Size = new System.Drawing.Size(36, 36);
+            this.viewButton.TabIndex = 4;
+            this.viewButton.TabStop = false;
+            this.toolTip.SetToolTip(this.viewButton, "Otevřít Náhled");
+            this.viewButton.UseVisualStyleBackColor = true;
+            this.viewButton.Click += new System.EventHandler(this.ShowPreview);
+            // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.download);
             this.flowLayoutPanel3.Controls.Add(this.urlBox);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(150, 0);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(200, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(634, 50);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(584, 50);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
             // download
             // 
             this.download.Image = global::HTML_Viewer.Properties.Resources.download;
-            this.download.Location = new System.Drawing.Point(591, 7);
+            this.download.Location = new System.Drawing.Point(541, 7);
             this.download.Margin = new System.Windows.Forms.Padding(7);
             this.download.Name = "download";
             this.download.Size = new System.Drawing.Size(36, 36);
@@ -142,7 +157,7 @@
             // urlBox
             // 
             this.urlBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.urlBox.Location = new System.Drawing.Point(277, 7);
+            this.urlBox.Location = new System.Drawing.Point(227, 7);
             this.urlBox.Margin = new System.Windows.Forms.Padding(7);
             this.urlBox.Name = "urlBox";
             this.urlBox.Size = new System.Drawing.Size(300, 20);
@@ -358,7 +373,7 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel3, 1, 0);
@@ -381,6 +396,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "Form1";
             this.Text = "HTML Viewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeleteTempFile);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
@@ -420,6 +436,7 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button addCommentButton;
+        private System.Windows.Forms.Button viewButton;
     }
 }
 

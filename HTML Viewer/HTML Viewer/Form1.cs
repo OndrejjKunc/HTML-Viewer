@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -439,6 +440,17 @@ namespace HTML_Viewer
             }
         }
 
+        private void ShowPreview(object sender, EventArgs e)
+        {
+            string filePath = Directory.GetCurrentDirectory() + "/temp.html";
+            File.WriteAllText(filePath, serializer.Serialize(root));
+            System.Diagnostics.Process.Start(filePath);
+        }
+
+        private void DeleteTempFile(object sender, FormClosingEventArgs e)
+        {
+            File.Delete(Directory.GetCurrentDirectory() + "/temp.html");
+        }
     }
 
     public class Attribute
