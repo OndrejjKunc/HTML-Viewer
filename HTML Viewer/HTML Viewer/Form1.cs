@@ -188,12 +188,14 @@ namespace HTML_Viewer
                 addElementButton.Enabled = true;
                 addAttributeButton.Enabled = true;
                 addTextButton.Enabled = true;
+                addCommentButton.Enabled = true;
             }
             else
             {
                 addElementButton.Enabled = false;
                 addAttributeButton.Enabled = false;
                 addTextButton.Enabled = false;
+                addCommentButton.Enabled = false;
             }
         }
 
@@ -649,7 +651,7 @@ namespace HTML_Viewer
             {
                 ReadWhile(() => Char.IsWhiteSpace(ReadChar(false)));
             }
-        }
+        }   
 
         private bool IsNameCharacter(char c) //Char.IsLetterOrDigit() minulo napr. '-'.
         {

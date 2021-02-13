@@ -10,3 +10,5 @@ HTML Viewer je soubor k práci s HTML dokumenty v podobě stromu. Umožňuje upr
  - https://stackoverflow.com/questions/7166307/passing-a-condition-as-a-parameter
  - https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.savefiledialog?view=net-5.0
  - https://stackoverflow.com/questions/11806166/how-do-i-tell-when-the-enter-key-is-pressed-in-a-textbox
+ - http://xml.coverpages.org/coombs.html
+ - https://www.w3.org/People/Raggett/book4/ch02.html
